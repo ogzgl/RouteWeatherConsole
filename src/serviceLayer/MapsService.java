@@ -17,7 +17,7 @@ public class MapsService {
 
     public MapsService() {
         httpHandler = new HttpHandler();
-        this.apiKey = "AIzaSyB-dtbrS9Xpb1gs2_2lHLKePFSE2e5WzKo";
+        this.apiKey = "-";
         this.mapsUrl = "https://maps.googleapis.com/maps/api/directions/json?";
     }
 
