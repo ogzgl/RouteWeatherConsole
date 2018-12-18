@@ -1,6 +1,7 @@
 package serviceLayer;
 
 import businessLayer.Location;
+import businessLayer.WeatherCondition;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,5 +23,11 @@ public class ResponseParser {
             allSteps.add(loc);
         }
         return allSteps;
+    }
+
+    public WeatherCondition weatherResponseParser(JsonNode response) {
+        String summary = response.at("/currently/summary").toString();
+        String temperature = response.at("/currently/temperature").toString();
+        return new WeatherCondition(summary, Double.parseDouble(temperature));
     }
 }
