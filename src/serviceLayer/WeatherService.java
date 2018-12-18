@@ -1,9 +1,9 @@
 package serviceLayer;
 
-import Exceptions.Exceptions;
 import businessLayer.Location;
 import businessLayer.WeatherCondition;
 import com.fasterxml.jackson.databind.JsonNode;
+import exceptions.Exceptions;
 
 import java.io.IOException;
 import java.util.ArrayList;

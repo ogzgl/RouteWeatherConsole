@@ -1,9 +1,9 @@
 package serviceLayer;
 
-import Exceptions.Exceptions;
 import businessLayer.Location;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import exceptions.Exceptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class MapsService {
 
     public MapsService() {
         httpHandler = new HttpHandler();
-        this.apiKey = "-";
+        this.apiKey = "AIzaSyB-dtbrS9Xpb1gs2_2lHLKePFSE2e5WzKo";
         this.mapsUrl = "https://maps.googleapis.com/maps/api/directions/json?";
     }
 

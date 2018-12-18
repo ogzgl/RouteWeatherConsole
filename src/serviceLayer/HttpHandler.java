@@ -1,8 +1,8 @@
 package serviceLayer;
 
-import Exceptions.Exceptions;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import exceptions.Exceptions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,9 +29,7 @@ public class HttpHandler {
         in.close();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonResponse = mapper.readTree(response.toString());
-        if (jsonResponse.get("status").asText().equals("NOT_FOUND")) {
-            throw new Exceptions.NotFoundLocation("Given location is not valid.", Exceptions.NotFoundLocation);
-        } else if (responseCode == 400) {
+        if (responseCode == 400) {
             throw new Exceptions.BadRequestException("Given location was not valid for Dark Sky.", Exceptions.BadRequestException);
         } else if (responseCode == 200) {
             return jsonResponse;
