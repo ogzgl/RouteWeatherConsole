@@ -9,24 +9,16 @@ public class WeatherCondition {
         setTemperature(temperature);
     }
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
+    private void setSummary(String summary) {
         this.summary = summary;
     }
 
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(double temperature) {
+    private void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 
     @Override
     public String toString() {
-        return "Weather will be " + summary + " with temperature " + temperature + " \u00b0C";
+        return "Weather will be " + summary.replace("\"", "") + " with temperature " + temperature + " \u00b0C";
     }
 }

@@ -5,18 +5,18 @@ import businessLayer.WeatherCondition;
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.Exceptions;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class WeatherService {
-    private String darkskyKey;
     private String darkskyUrl;
     private HttpHandler httpHandler;
 
     public WeatherService() {
         httpHandler = new HttpHandler();
-        this.darkskyKey = "434667c5ff1e9c07bc0b5185334bee5c";
         this.darkskyUrl = "https://api.darksky.net/forecast/";
     }
 
@@ -25,7 +25,7 @@ public class WeatherService {
         List<WeatherCondition> weatherConditionList = new ArrayList<>();
         for (Location loc : locationList) {
             requestUrl = darkskyUrl
-                    + darkskyKey + "/"
+                    + propertyReader() + "/"
                     + loc.getLat() + ","
                     + loc.getLng()
                     + "?exclude=minutely,hourly,daily,alerts,flags&units=auto";
@@ -39,5 +39,11 @@ public class WeatherService {
             }
         }
         return weatherConditionList;
+    }
+
+    private String propertyReader() throws IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader("src/app.conf"));
+        return properties.get("DARKSKY_API_KEY").toString();
     }
 }

@@ -30,7 +30,7 @@ public class HttpHandler {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonResponse = mapper.readTree(response.toString());
         if (responseCode == 400) {
-            throw new Exceptions.BadRequestException("Given location was not valid for Dark Sky.", Exceptions.BadRequestException);
+            throw new Exceptions.BadRequestException("Given locations was not valid.", Exceptions.BadRequestException);
         } else if (responseCode == 200) {
             return jsonResponse;
         } else {
