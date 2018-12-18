@@ -10,7 +10,25 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/externalLibraries/json-20180813.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/externalLibraries/jackson-core-2.9.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/externalLibraries/jackson-databind-2.9.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/externalLibraries/jackson-annotations-2.9.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
