@@ -22,18 +22,17 @@ public class MapsService {
         responseParser = new ResponseParser();
     }
 
-    public List<Route> routeRequest(String origin, String destination, String travelMode) throws IOException {
+    public void routeRequest(String origin, String destination, String travelMode, List<Route> stepList) throws IOException {
         String requestUrl = mapsUrl + "origin=" + origin
                 + "&destination=" + destination
                 + "&mode=" + travelMode
                 + "&key=" + propertyReader();
         try {
             response = httpHandler.request(requestUrl);
-            return responseParser.mapsResponseParse(response);
-        } catch (Exceptions.BadRequestException | Exceptions.ConnectionError e) {
+            responseParser.mapsResponseParse(response, stepList);
+        } catch (Exceptions.BadRequestException | Exceptions.NotFoundLocation | Exceptions.ConnectionError e) {
             System.out.println(e.getMessage());
         }
-        return null;
     }
 
     private String propertyReader() throws IOException {

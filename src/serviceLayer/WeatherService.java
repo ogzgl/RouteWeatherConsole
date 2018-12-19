@@ -20,9 +20,10 @@ public class WeatherService {
         responseParser = new ResponseParser();
     }
 
-    public void retrieveWeatherInformation(List<Route> routeList) throws IOException {
+    public void retrieveWeatherInformation(List<Route> stepList) throws IOException {
         String requestUrl;
-        for (Route route : routeList) {
+        if (stepList.size() == 0) return;
+        for (Route route : stepList) {
             requestUrl = darkskyUrl
                     + propertyReader() + "/"
                     + route.getEndLocation().getLat() + ","
@@ -31,7 +32,7 @@ public class WeatherService {
             try {
                 JsonNode weatherInfoResponse = httpHandler.request(requestUrl);
                 route.setWeatherCondition(responseParser.weatherResponseParser(weatherInfoResponse));
-            } catch (Exceptions.BadRequestException | Exceptions.ConnectionError e) {
+            } catch (Exceptions.BadRequestException | Exceptions.NotFoundLocation | Exceptions.ConnectionError e) {
                 e.getMessage();
             }
         }
