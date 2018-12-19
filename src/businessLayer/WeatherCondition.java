@@ -9,6 +9,14 @@ public class WeatherCondition {
         setTemperature(temperature);
     }
 
+    public double getTemperature() {
+        return temperature;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
     private void setSummary(String summary) {
         this.summary = summary;
     }

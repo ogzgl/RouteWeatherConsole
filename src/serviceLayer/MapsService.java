@@ -1,6 +1,6 @@
 package serviceLayer;
 
-import businessLayer.Location;
+import businessLayer.Route;
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.Exceptions;
 
@@ -22,7 +22,7 @@ public class MapsService {
         responseParser = new ResponseParser();
     }
 
-    public List<Location> sendRequest(String origin, String destination, String travelMode) throws IOException {
+    public List<Route> routeRequest(String origin, String destination, String travelMode) throws IOException {
         String requestUrl = mapsUrl + "origin=" + origin
                 + "&destination=" + destination
                 + "&mode=" + travelMode
@@ -30,7 +30,7 @@ public class MapsService {
         try {
             response = httpHandler.request(requestUrl);
             return responseParser.mapsResponseParse(response);
-        } catch (Exceptions.NotFoundLocation | Exceptions.BadRequestException | Exceptions.ConnectionError e) {
+        } catch (Exceptions.BadRequestException | Exceptions.ConnectionError e) {
             System.out.println(e.getMessage());
         }
         return null;

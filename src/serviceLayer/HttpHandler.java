@@ -13,7 +13,6 @@ import java.net.URL;
 public class HttpHandler {
     public JsonNode request(String address) throws IOException,
             Exceptions.BadRequestException,
-            Exceptions.NotFoundLocation,
             Exceptions.ConnectionError {
         URL url = new URL(address);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

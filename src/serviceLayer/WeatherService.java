@@ -1,44 +1,40 @@
 package serviceLayer;
 
-import businessLayer.Location;
-import businessLayer.WeatherCondition;
+import businessLayer.Route;
 import com.fasterxml.jackson.databind.JsonNode;
 import exceptions.Exceptions;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 public class WeatherService {
     private String darkskyUrl;
     private HttpHandler httpHandler;
+    private ResponseParser responseParser;
 
     public WeatherService() {
-        httpHandler = new HttpHandler();
         this.darkskyUrl = "https://api.darksky.net/forecast/";
+        httpHandler = new HttpHandler();
+        responseParser = new ResponseParser();
     }
 
-    public List<WeatherCondition> retrieveWeatherInformation(List<Location> locationList) throws IOException {
+    public void retrieveWeatherInformation(List<Route> routeList) throws IOException {
         String requestUrl;
-        List<WeatherCondition> weatherConditionList = new ArrayList<>();
-        for (Location loc : locationList) {
+        for (Route route : routeList) {
             requestUrl = darkskyUrl
                     + propertyReader() + "/"
-                    + loc.getLat() + ","
-                    + loc.getLng()
+                    + route.getEndLocation().getLat() + ","
+                    + route.getEndLocation().getLng()
                     + "?exclude=minutely,hourly,daily,alerts,flags&units=auto";
             try {
                 JsonNode weatherInfoResponse = httpHandler.request(requestUrl);
-                String summary = weatherInfoResponse.at("/currently/summary").toString();
-                String temperature = weatherInfoResponse.at("/currently/temperature").toString();
-                weatherConditionList.add(new WeatherCondition(summary, Double.parseDouble(temperature)));
-            } catch (Exceptions.BadRequestException | Exceptions.NotFoundLocation | Exceptions.ConnectionError e) {
+                route.setWeatherCondition(responseParser.weatherResponseParser(weatherInfoResponse));
+            } catch (Exceptions.BadRequestException | Exceptions.ConnectionError e) {
                 e.getMessage();
             }
         }
-        return weatherConditionList;
     }
 
     private String propertyReader() throws IOException {
