@@ -26,7 +26,7 @@ public class HttpHandler {
             response.append(inputLine);
         }
         in.close();
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper(); //mapper for string to json conversion
         JsonNode jsonResponse = mapper.readTree(response.toString());
         if (responseCode == 400) {
             throw new Exceptions.BadRequestException("Given locations was not valid for Weather.", Exceptions.BadRequestException);

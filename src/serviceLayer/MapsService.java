@@ -14,7 +14,6 @@ public class MapsService {
     private HttpHandler httpHandler;
     private JsonNode response;
     private ResponseParser responseParser;
-    private Properties properties;
 
     public MapsService() {
         this.mapsUrl = "https://maps.googleapis.com/maps/api/directions/json?";

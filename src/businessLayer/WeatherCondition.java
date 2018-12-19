@@ -1,8 +1,12 @@
 package businessLayer;
 
+/*
+ * This class holds the weather data that is obtained
+ * via DarkSky Api.
+ * */
 public class WeatherCondition {
-    private String summary;
-    private double temperature;
+    private String summary; //summary holds the verbal explanation of weather e.g rainy
+    private double temperature; // temperature in unit (C of F) decided auto. for location
 
     public WeatherCondition(String summary, double temperature) {
         setSummary(summary);

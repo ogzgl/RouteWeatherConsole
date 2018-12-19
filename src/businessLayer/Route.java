@@ -1,10 +1,14 @@
 package businessLayer;
 
+/*
+ * This class holds the every step information in Json that
+ * is returned via Google Maps API.
+ * */
 public class Route {
-    private Location endLocation;
-    private String totalDistance;
-    private String duration;
-    private String instruction;
+    private Location endLocation; //endLocation is the finish point of the step.
+    private String totalDistance; // distance required to take step
+    private String duration; // time required to take step
+    private String instruction; //route instruction(For instance take right turn.)
     private WeatherCondition weatherCondition;
 
     public Route(Location endLocation, String distance, String duration, String instruction) {
@@ -14,11 +18,7 @@ public class Route {
         setInstruction(instruction);
     }
 
-    public String getInstruction() {
-        return instruction;
-    }
-
-    public void setInstruction(String instruction) {
+    private void setInstruction(String instruction) {
         this.instruction = instruction;
     }
 
@@ -30,15 +30,15 @@ public class Route {
         return endLocation;
     }
 
-    public void setEndLocation(Location endLocation) {
+    private void setEndLocation(Location endLocation) {
         this.endLocation = endLocation;
     }
 
-    public void setTotalDistance(String totalDistance) {
+    private void setTotalDistance(String totalDistance) {
         this.totalDistance = totalDistance;
     }
 
-    public void setDuration(String duration) {
+    private void setDuration(String duration) {
         this.duration = duration;
     }
 
