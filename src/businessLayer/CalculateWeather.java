@@ -24,6 +24,35 @@ public class CalculateWeather {
     }
 
     public void calculateWeather(String origin, String destination, String travelMode) throws IOException {
+        /*
+        * The stepList that is passed as argument to the mapsService is the field of CalculateWeatherClass.
+        * Basically, it holds the direction steps that is returned from Google Maps for routing.
+        * An example step is:
+        * {
+            "distance": {
+            "text": "30 m",
+            "value": 30
+            },
+          "duration": {
+          "text": "1 min",
+          "value": 5
+          },
+          "end_location": {
+          "lat": 38.3194524,
+          "lng": 26.6430566
+          },
+          "html_instructions": "Head <b>north</b> toward <b>İzmir YTE</b>",
+          "polyline": {
+          "points": "}e{hFwuraDs@K"
+          },
+          "start_location": {
+          "lat": 38.3191909,
+          "lng": 26.642999
+          },
+          "travel_mode": "DRIVING"
+          }
+        *
+        * */
         mapsService.routeRequest(origin, destination, travelMode, stepList);
         weatherService.retrieveWeatherInformation(stepList);
         if (stepList.size() == 0) { // condition check if Google Maps returned 0 value.
