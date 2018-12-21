@@ -52,6 +52,13 @@ public class CalculateWeather {
           "travel_mode": "DRIVING"
           }
         *
+        *
+        * The stepList comes in Json format from Google Maps API, this connection handled via Http request that is done
+        * to Google Servers, parsed and mapped via Jackson(Json library).
+        *
+        * After parsing and mapping the Json, the stepList passed as argument to weather service,
+        * the endpoint of each step is sent to DarkSky API as latitude, longitude information. The response of DarkSky
+        * and Google Maps is combined and printed on presentation layer.
         * */
         mapsService.routeRequest(origin, destination, travelMode, stepList);
         weatherService.retrieveWeatherInformation(stepList);
